@@ -63,7 +63,7 @@ functions:
 #    Check the event documentation for details
     events:
       - http:
-          path: 
+          path: /
           method: post
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
