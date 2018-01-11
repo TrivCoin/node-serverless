@@ -9,7 +9,7 @@ module.exports.rpc = (event, context, callback) => {
     try {
         const response = node.receive(JSON.parse(event.body));        
         console.log("RESPONSE", response);
-        callback(null, resposne);
+        callback(null, response);
     } catch(error) {
         console.log("ERROR", error);
         callback(error);
