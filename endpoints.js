@@ -5,9 +5,13 @@ const node = new TrivCoin.Node(null, "ADDRESS");
 
 module.exports.rpc = (event, context, callback) => {    
     console.log("EVENT", event);
-    try {        
-        callback(null, node.receive(JSON.parse(event.body)));
+    console.log("EVENT", event.body);
+    try {
+        const response = node.receive(JSON.parse(event.body));        
+        console.log("RESPONSE", response);
+        callback(null, resposne);
     } catch(error) {
+        console.log("ERROR", error);
         callback(error);
     }
 
