@@ -1,0 +1,10 @@
+{
+  "resolutions": {
+    "colors": "1.1.2",
+    "pkginfo": "0.4.1",
+    "async": "1.0.0"
+  },
+  "dependencies": {
+    "trivcoin": "^0.0.1-rc.4"
+  }
+}
