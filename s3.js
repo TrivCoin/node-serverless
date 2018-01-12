@@ -148,12 +148,8 @@ class S3DB {
         return fetch(undefined, undefined, this.prefix + "/");
     }
 
-    sort(sorter) {
-        return this.list().then(list => list.sort(sorter));
-    }
-
-    slice(sorter, start, end) {
-        return this.sort(sorter).then(list => list.slice(start, end));
+    slice(after, length) {        
+        return fetch(this.prefix + "/" + start, length, this.prefix + "/");
     }
 
 }
