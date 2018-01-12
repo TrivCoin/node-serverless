@@ -112,7 +112,7 @@ const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => S3
  */
 const fetch = (afterKey, length, prefix) => new Promise((resolve, reject) => 
     scan(afterKey, length, prefix)
-    .then(keys => Promise.all(keys.map(key => read(key))));
+    .then(keys => Promise.all(keys.map(key => read(key)))));
 
 class S3DB {
 
