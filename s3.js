@@ -128,6 +128,10 @@ class S3DB {
         return read(this.prefix + "/" + id);
     }
 
+    has(id) {
+        return exists(this.prefix + "/" + id);
+    }
+
     remove(id) {
         return remove(this.prefix + "/" + id);
     }
