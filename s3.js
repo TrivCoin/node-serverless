@@ -115,9 +115,16 @@ const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => {
  * @param {number} length
  * @return {Promise<object[]>}
  */
-const fetch = (afterKey, length, prefix) => new Promise((resolve, reject) =>
+const fetch = (afterKey, length, prefix) => 
     scan(afterKey, length, prefix)
-        .then(keys => keys.length === 0 ? [] : Promise.all(keys.map(key => read(key)))));
+        .then(keys => keys.length === 0
+            ? []
+            : Promise
+                .all(keys
+                    .map(key => read(key))
+                )
+        );
+
 
 class S3DB {
 
