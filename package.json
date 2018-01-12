@@ -5,6 +5,6 @@
     "async": "1.0.0"
   },
   "dependencies": {
-    "trivcoin": "0.0.1-rc.13"
+    "trivcoin": "^0.0.1-rc.13"
   }
 }
