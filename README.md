@@ -12,3 +12,8 @@ sudo yum groupinstall "Development Tools"
 ```
 
 Now you can work.
+
+### Deploy
+```
+serverless deploy -v
+```
