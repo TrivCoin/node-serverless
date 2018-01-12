@@ -88,8 +88,8 @@ functions:
 #          trigger: PreSignUp
 
 #    Define function environment variables here
-#    environment:
-#      variable2: value2
+    environment:
+      bucket: ${env:BUCKET}
 
 # you can add CloudFormation resource templates here
 #resources:
