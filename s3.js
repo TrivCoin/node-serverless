@@ -82,37 +82,41 @@ const remove = (key) => new Promise((resolve, reject) => S3
             resolve(true);
         }
     }));
-    
+
 /**
  * List all objects in s3 after given key
  * @param {string} afterKey
  * @param {number} length
  * @return {Promise<string[]>}
  */
-const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => S3
-    .listObjectsV2({
+const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => {
+    const params = {
         Bucket: BUCKET,
         StartAfter: afterKey,
         MaxKeys: length,
         Prefix: prefix || undefined
-    }, (err, data) => {
-        if (err) {
-            reject(err);
-            return;
-        }
-        resolve(data.Contents.map(data => read(data.Key)));
-    }));
+    };
+    console.log("S3.scan", params)
+    S3
+        .listObjectsV2(params, (err, data) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(data.Contents.map(data => read(data.Key)));
+        });
+});
 
-    
+
 /**
  * List all objects in s3 after given key
  * @param {string} afterKey
  * @param {number} length
  * @return {Promise<object[]>}
  */
-const fetch = (afterKey, length, prefix) => new Promise((resolve, reject) => 
+const fetch = (afterKey, length, prefix) => new Promise((resolve, reject) =>
     scan(afterKey, length, prefix)
-    .then(keys => Promise.all(keys.map(key => read(key)))));
+        .then(keys => Promise.all(keys.map(key => read(key)))));
 
 class S3DB {
 
@@ -148,8 +152,8 @@ class S3DB {
         return fetch(undefined, undefined, this.prefix + "/");
     }
 
-    slice(after, length) {        
-        return fetch(this.prefix + "/" + start, length, this.prefix + "/");
+    slice(after, length) {
+        return fetch(this.prefix + "/" + after, length, this.prefix + "/");
     }
 
 }
