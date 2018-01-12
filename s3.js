@@ -1,7 +1,7 @@
 
 const S3Class = require('aws-sdk/clients/s3')
 const S3 = new S3Class();
-const BUCKET = process.env.BUCKET;
+const BUCKET = process.env.BUCKET.replace(/^arn\:aws\:s3\:\:\:/, "");
 
 /**
  * Create object on S3

@@ -24,11 +24,11 @@ provider:
     -  Effect: "Allow"
        Action:
          - "s3:ListBucket"
-       Resource: "arn:aws:s3:::trivcoin-vault-${opt:stage, 'dev'}"
+       Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
     -  Effect: "Allow"
        Action:
          - "s3:*"
-       Resource: "arn:aws:s3:::trivcoin-vault-${opt:stage, 'dev'}/*"
+       Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ], "/*" ]  }
 
 # you can overwrite defaults here
 #  stage: dev
@@ -98,17 +98,16 @@ functions:
 
 #    Define function environment variables here
     environment:
-      BUCKET: trivcoin-vault-${opt:stage, 'dev'}
+      BUCKET: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
       STAGE: ${opt:stage, 'dev'}
-      OWN_BUCKET: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 
 # you can add CloudFormation resource templates here
-resources:
-  Resources:
-    S3BucketPhotos:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: trivcoin-vault-${opt:stage, 'dev'}
+#resources:
+#  Resources:
+#    S3BucketPhotos:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: trivcoin-vault-${opt:stage, 'dev'}
         # add additional custom bucket configuration here
     # ResizeLambdaPermissionPhotosS3:
     #   Type: "AWS::Lambda::Permission"
