@@ -89,7 +89,6 @@ functions:
 
 #    Define function environment variables here
     environment:
-      ENV: ${env}
       bucket: ${env:BUCKET}
       BUCKET: trivcoin-vault-${opt:stage, 'dev'}
       stage: ${opt:stage, 'dev'}
