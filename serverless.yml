@@ -100,6 +100,7 @@ functions:
     environment:
       BUCKET: trivcoin-vault-${opt:stage, 'dev'}
       STAGE: ${opt:stage, 'dev'}
+      OWN_BUCKET: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 
 # you can add CloudFormation resource templates here
 resources:
