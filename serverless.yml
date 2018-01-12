@@ -89,12 +89,32 @@ functions:
 
 #    Define function environment variables here
     environment:
+      ENV: ${env}
       bucket: ${env:BUCKET}
+      BUCKET: trivcoin-vault-${opt:stage, 'dev'}
+      stage: ${opt:stage, 'dev'}
 
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
+resources:
+  Resources:
+    S3BucketPhotos:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: trivcoin-vault-${opt:stage, 'dev'}
+        # add additional custom bucket configuration here
+    # ResizeLambdaPermissionPhotosS3:
+    #   Type: "AWS::Lambda::Permission"
+    #   Properties:
+    #     FunctionName:
+    #       "Fn::GetAtt":
+    #         - ResizeLambdaFunction
+    #         - Arn
+    #     Principal: "s3.amazonaws.com"
+    #     Action: "lambda:InvokeFunction"
+    #     SourceAccount:
+    #       Ref: AWS::AccountId
+    #     SourceArn: "arn:aws:s3:::trivcoin-vault-${opt:stage, 'dev'}"
+    # NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:
 #        BucketName: my-new-bucket
