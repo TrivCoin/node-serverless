@@ -89,9 +89,8 @@ functions:
 
 #    Define function environment variables here
     environment:
-      bucket: ${env:BUCKET}
       BUCKET: trivcoin-vault-${opt:stage, 'dev'}
-      stage: ${opt:stage, 'dev'}
+      STAGE: ${opt:stage, 'dev'}
 
 # you can add CloudFormation resource templates here
 resources:
