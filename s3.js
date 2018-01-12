@@ -99,6 +99,7 @@ const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => {
     console.log("S3.scan", params)
     S3
         .listObjectsV2(params, (err, data) => {
+            console.log("S3.data", err, data);
             if (err) {
                 reject(err);
                 return;
@@ -116,7 +117,7 @@ const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => {
  */
 const fetch = (afterKey, length, prefix) => new Promise((resolve, reject) =>
     scan(afterKey, length, prefix)
-        .then(keys => Promise.all(keys.map(key => read(key)))));
+        .then(keys => keys.length === 0 ? [] : Promise.all(keys.map(key => read(key)))));
 
 class S3DB {
 
