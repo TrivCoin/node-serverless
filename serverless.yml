@@ -28,7 +28,7 @@ provider:
     -  Effect: "Allow"
        Action:
          - "s3:*"
-       Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ], "/*" ]  }
+       Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" }, "/*" ] ]  }
 
 # you can overwrite defaults here
 #  stage: dev
