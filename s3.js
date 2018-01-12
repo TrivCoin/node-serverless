@@ -153,7 +153,7 @@ class S3DB {
     }
 
     slice(sorter, start, end) {
-        return this.sort(soter).then(list => list.slice(start, end));
+        return this.sort(sorter).then(list => list.slice(start, end));
     }
 
 }
