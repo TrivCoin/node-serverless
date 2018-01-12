@@ -6,7 +6,8 @@ const node = new TrivCoin.Node(null, "ADDRESS", new S3DB("blocks"), new S3DB("tr
 
 module.exports.rpc = (event, context, callback) => {
     try {
-        node.receive(JSON.parse(event.body))
+        node
+            .receive(JSON.parse(event.body))
             .then(response => {
                 console.log("ENV", process.env);
                 callback(null, {

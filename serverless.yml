@@ -20,6 +20,15 @@ service: node-serverless
 provider:
   name: aws
   runtime: nodejs6.10
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "s3:ListBucket"
+       Resource: "arn:aws:s3:::trivcoin-vault-${opt:stage, 'dev'}"
+    -  Effect: "Allow"
+       Action:
+         - "s3:*"
+       Resource: "arn:aws:s3:::trivcoin-vault-${opt:stage, 'dev'}/*"
 
 # you can overwrite defaults here
 #  stage: dev
