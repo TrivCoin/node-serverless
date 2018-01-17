@@ -115,7 +115,7 @@ const scan = (afterKey, length, prefix) => new Promise((resolve, reject) => {
  * @param {number} length
  * @return {Promise<object[]>}
  */
-const fetch = (afterKey, length, prefix) => 
+const fetch = (afterKey, length, prefix) =>
     scan(afterKey, length, prefix)
         .then(keys => keys.length === 0
             ? []
